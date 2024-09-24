@@ -1,59 +1,116 @@
-/* src/app/home/home.component.scss */
-
 .home-container {
-  width: 600px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  max-width: 800px;
   margin: 0 auto;
-  padding-top: 50px;
+  text-align: left;  /* Ensure text alignment is left */
 
   h2 {
     text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
   ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
-
-    li {
-      margin-bottom: 15px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-
-      strong {
-        font-size: 1.2em;
-      }
-
-      p {
-        margin: 5px 0;
-      }
-    }
+    margin: 0;
+    width: 100%;
+    display: flex;            /* Add flex display */
+    flex-direction: column;   /* Arrange items vertically */
+    align-items: flex-start;  /* Align items to the start (left) */
   }
 
-  .pagination-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+  li {
+    width: 100%;              /* Ensure li spans full width */
+    box-sizing: border-box;   /* Include padding in width calculation */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
 
-    button {
-      padding: 8px 16px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    &:hover {
+      transform: scale(1.02);
+    }
 
-      &:disabled {
-        background-color: #ccc;
+    strong {
+      color: #2c3e50;
+      font-size: 20px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    p {
+      color: #7f8c8d;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .action-buttons,
+    .rating-section {
+      width: 100%;             /* Ensure full width */
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      justify-content: flex-start;  /* Align items to the left */
+      align-items: center;          /* Vertically center items */
+    }
+
+    .action-buttons {
+      button {
+        padding: 8px 15px;
+        background-color: #2980b9;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #3498db;
+        }
+      }
+
+      .not-seen {
+        background-color: #e74c3c;
+
+        &:hover {
+          background-color: #c0392b;
+        }
       }
     }
 
-    span {
-      font-size: 1.1em;
-    }
-  }
+    .rating-section {
+      label {
+        margin-right: 10px;
+        font-size: 16px;
+        color: #34495e;
+      }
 
-  .error-message {
-    color: red;
-    text-align: center;
-    margin-top: 10px;
+      select {
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .submit-rating {
+        padding: 8px 12px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #27ae60;
+        }
+      }
+    }
   }
 }

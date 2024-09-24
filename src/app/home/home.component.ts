@@ -25,11 +25,12 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, private movieService: MovieService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loadMovies();
+    this.loadMovies();  // Load movies when the page loads
   }
 
+  // Load movies (default to new movies)
   loadMovies(): void {
-    this.movieService.getMovies(this.page, this.pageSize).subscribe(
+    this.movieService.getMovies(this.page, this.pageSize, 'new').subscribe(
       (response) => {
         this.movies = response.movies;
         this.totalMovies = response.total_movies;
@@ -41,12 +42,12 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // Set watched status for a movie
+  // Set watched status for a movie without triggering the API call yet
   setWatched(movie: any, watched: boolean): void {
     movie.watched = watched;  // Set the watched status
     if (!watched) {
       movie.rating = null;  // Clear rating if the movie is not watched
-      this.submitAction(movie);
+      this.submitAction(movie);  // Submit the action for not seen immediately
     }
   }
 
@@ -61,6 +62,8 @@ export class HomeComponent implements OnInit {
     this.movieService.updateMovieAction(payload).subscribe(
       () => {
         console.log('Movie action submitted successfully');
+        // Refresh the movie list after an action
+        this.loadMovies();  // Reload only 'new' movies
       },
       (error) => {
         this.errorMessage = 'Failed to submit movie action.';
@@ -68,10 +71,10 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // Submit the rating for the movie
+  // Submit the rating for the movie and trigger the API call
   submitRating(movie: any): void {
-    if (movie.rating && movie.watched) {
-      this.submitAction(movie);  // Submit the action with rating if available
+    if (movie.watched && movie.rating) {
+      this.submitAction(movie);  // Submit the action with rating after rating is provided
     }
   }
 
@@ -80,6 +83,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  // Navigate to the next page and reload the movie list
   nextPage(): void {
     if (this.page < this.totalPages) {
       this.page++;
@@ -87,6 +91,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Navigate to the previous page and reload the movie list
   previousPage(): void {
     if (this.page > 1) {
       this.page--;

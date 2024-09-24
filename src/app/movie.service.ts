@@ -1,7 +1,7 @@
 // src/app/movie.service.ts
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';  // Adjust if needed
 
@@ -13,9 +13,9 @@ export class MovieService {
 
   constructor(private http: HttpClient) {}
 
-  // Fetch movies with pagination
-  getMovies(page: number, pageSize: number): Observable<any> {
-    const url = `${this.baseUrl}/movies?page=${page}&page_size=${pageSize}`;
+  // Fetch movies with pagination and optional status
+  getMovies(page: number, pageSize: number, status: string): Observable<any> {
+    const url = `${this.baseUrl}/movies?page=${page}&page_size=${pageSize}&status=${status}`;
     return this.http.get<any>(url);
   }
 

@@ -53,10 +53,10 @@
         [(ngModel)]="password"
         name="password"
         #passwordInput="ngModel"
-        minlength="6"
+        minlength="4"
       />
       <div *ngIf="passwordInput.invalid && passwordInput.touched">
-        Password must be at least 6 characters.
+        Password must be at least 4 characters.
       </div>
     </div>
 

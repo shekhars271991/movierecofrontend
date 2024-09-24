@@ -10,8 +10,11 @@
     <div *ngIf="recommendedMovies.length > 0">
       <ul>
         <li *ngFor="let movie of recommendedMovies">
-          <strong>{{ movie.id }}</strong> ({{ movie.release_year }})
-          <p>{{ movie.genres }}</p>
+          <h3>{{ movie.title }} ({{ movie.release_year }})</h3>
+          <p><strong>Genres:</strong> {{ movie.genres.join(', ') }}</p>
+          <p><strong>Description:</strong> {{ movie.description }}</p>
+          <p><strong>Cast:</strong> {{ movie.cast.join(', ') }}</p>
+          <p><strong>Vector Distance:</strong> {{ movie.vector_distance }}</p>
         </li>
       </ul>
     </div>

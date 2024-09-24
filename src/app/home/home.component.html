@@ -45,4 +45,7 @@
   <div *ngIf="movies.length === 0 && !errorMessage">
     <p>No movies found.</p>
   </div>
+
+  <!-- Navigate to recommendations page -->
+  <button (click)="goToRecommendations()">View Recommendations</button>
 </div>

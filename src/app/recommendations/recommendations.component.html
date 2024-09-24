@@ -1,0 +1,27 @@
+<div class="recommendations-container">
+    <h2>Recommended Movies</h2>
+  
+    <!-- Show error message if there's any -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Recommended Movie List -->
+    <div *ngIf="recommendedMovies.length > 0">
+      <ul>
+        <li *ngFor="let movie of recommendedMovies">
+          <strong>{{ movie.id }}</strong> ({{ movie.release_year }})
+          <p>{{ movie.genres }}</p>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Show message if no recommendations are found -->
+    <div *ngIf="recommendedMovies.length === 0 && !errorMessage">
+      <p>No movie recommendations found.</p>
+    </div>
+  
+    <!-- Navigate back to home -->
+    <button (click)="goToHome()">Go to Home</button>
+  </div>
+  

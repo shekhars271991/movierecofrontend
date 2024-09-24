@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth.guard';
 import { RegistrationComponent } from './registration/registration.component'; // Import the registration component
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 
 export const routes: Routes = [
@@ -14,6 +15,12 @@ export const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'recommendations', 
+    component: RecommendationsComponent,
+    canActivate: [AuthGuard]
+  },
+
   { path: 'register', component: RegistrationComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

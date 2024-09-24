@@ -98,4 +98,9 @@ export class HomeComponent implements OnInit {
       this.loadMovies();
     }
   }
+  
+  goToRecommendations(): void {
+    this.router.navigate(['/recommendations']);
+  }
+  
 }

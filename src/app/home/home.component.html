@@ -1,7 +1,35 @@
 <!-- src/app/home/home.component.html -->
 
 <div class="home-container">
-    <h2>Welcome to the Home Page</h2>
-    <button (click)="logout()">Logout</button>
-  </div>
+  <h2>Welcome to the Home Page</h2>
   
+  <button (click)="logout()">Logout</button>
+
+  <!-- Show error message if there's any -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Movie List -->
+  <div *ngIf="movies.length > 0">
+    <h3>Movie List</h3>
+    <ul>
+      <li *ngFor="let movie of movies">
+        <strong>{{ movie.title }}</strong> ({{ movie.release_year }})
+        <p>{{ movie.description }}</p>
+      </li>
+    </ul>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button (click)="previousPage()" [disabled]="page === 1">Previous</button>
+      <span>Page {{ page }} of {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+    </div>
+  </div>
+
+  <!-- Show message if no movies are found -->
+  <div *ngIf="movies.length === 0 && !errorMessage">
+    <p>No movies found.</p>
+  </div>
+</div>

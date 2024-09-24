@@ -1,17 +1,59 @@
 /* src/app/home/home.component.scss */
 
 .home-container {
+  width: 600px;
+  margin: 0 auto;
+  padding-top: 50px;
+
+  h2 {
     text-align: center;
-    margin-top: 50px;
-  
-    h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-  
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+
+      strong {
+        font-size: 1.2em;
+      }
+
+      p {
+        margin: 5px 0;
+      }
     }
   }
-  
+
+  .pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    button {
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:disabled {
+        background-color: #ccc;
+      }
+    }
+
+    span {
+      font-size: 1.1em;
+    }
+  }
+
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
+}

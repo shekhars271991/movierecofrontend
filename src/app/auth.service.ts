@@ -3,66 +3,45 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../environments/environment';  // Import environment
-
+import { environment } from '../environments/environment';  // Import your environment file
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = environment.backendUrl; 
+  private baseUrl = environment.backendUrl;  // URL for your backend
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Registers a new user with the provided name, username, and password.
-   * @param name - The full name of the user.
-   * @param username - The username chosen by the user.
-   * @param password - The user's password.
-   * @returns An Observable of the HTTP response.
-   */
+  // Login method to authenticate the user
+  login(username: string, password: string): Observable<any> {
+    const url = `${this.baseUrl}/login`;
+    return this.http.post<any>(url, { username, password });
+  }
+
+  // Register method to register a new user
   register(name: string, username: string, password: string): Observable<any> {
     const url = `${this.baseUrl}/register`;
     const body = { name, username, password };
-    return this.http.post(url, body);
+    return this.http.post<any>(url, body);  // Send the registration data
   }
 
-  /**
-   * Logs in an existing user with the provided username and password.
-   * @param username - The user's username.
-   * @param password - The user's password.
-   * @returns An Observable of the HTTP response.
-   */
-  login(username: string, password: string): Observable<any> {
-    const url = `${this.baseUrl}/login`;
-    const body = { username, password };
-    return this.http.post(url, body);
-  }
-
-  /**
-   * Logs out the current user by removing their data from localStorage.
-   */
+  // Logout method to clear the token
   logout(): void {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('authToken'); 
+    localStorage.removeItem('currentUser'); // Clear the token from localStorage
   }
 
-  /**
-   * Checks whether a user is currently logged in.
-   * @returns True if a user is logged in; otherwise, false.
-   */
+  // Method to check if the user is logged in
   isLoggedIn(): boolean {
-    return localStorage.getItem('currentUser') !== null;
+    return localStorage.getItem('authToken') !== null;  // Check if token exists
   }
 
-  /**
-   * Retrieves the current logged-in user's username.
-   * @returns The username if a user is logged in; otherwise, null.
-   */
+  // Method to get the current user (if stored in localStorage)
   getCurrentUser(): string | null {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
-      const user = JSON.parse(currentUser);
-      return user.username;
+      return JSON.parse(currentUser).username;
     }
     return null;
   }

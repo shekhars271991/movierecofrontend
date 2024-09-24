@@ -36,6 +36,7 @@ export class LoginComponent {
         if (response) {
           // Store user data in localStorage after successful login
           localStorage.setItem('currentUser', JSON.stringify({ username: this.username }));
+          localStorage.setItem('authToken', response.access_token );
           // Navigate to the home page or dashboard
           this.router.navigate(['/home']);
         }

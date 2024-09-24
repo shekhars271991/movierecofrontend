@@ -1,7 +1,12 @@
 <div class="home-container">
-  <h2>Welcome to the Home Page</h2>
+  <h2>Here is a list of movies</h2>
 
-  <button (click)="logout()">Logout</button>
+
+   <!-- Top Buttons Container -->
+   <div class="top-buttons">
+    <button class="recommendations-button" (click)="goToRecommendations()">View Recommendations</button>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
 
   <!-- Show error message if there's any -->
   <div *ngIf="errorMessage" class="error-message">
@@ -46,6 +51,5 @@
     <p>No movies found.</p>
   </div>
 
-  <!-- Navigate to recommendations page -->
-  <button (click)="goToRecommendations()">View Recommendations</button>
+
 </div>

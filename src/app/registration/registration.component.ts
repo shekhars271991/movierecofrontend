@@ -5,20 +5,24 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, HttpClientModule],
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent {
   name: string = '';
-  email: string = '';
+  username: string = '';  // Changed from email to username
   password: string = '';
   confirmPassword: string = '';
   errorMessage: string = '';
+  successMessage: string = '';  // New property for success message
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -28,11 +32,24 @@ export class RegistrationComponent {
       return;
     }
 
-    if (this.authService.register(this.name, this.email, this.password)) {
-      // Navigate to the login page after successful registration
-      this.router.navigate(['/login']);
-    } else {
-      this.errorMessage = 'Registration failed. User may already exist.';
-    }
+    this.authService
+      .register(this.name, this.username, this.password)
+      .pipe(
+        catchError((error) => {
+          this.errorMessage = error.error.message || 'Registration failed';
+          return of(null);
+        })
+      )
+      .subscribe((response) => {
+        if (response) {
+          // Set the success message and clear the form
+          this.successMessage = 'User registered successfully. You can now login.';
+          this.errorMessage = '';
+          this.name = '';
+          this.username = '';
+          this.password = '';
+          this.confirmPassword = '';
+        }
+      });
   }
 }

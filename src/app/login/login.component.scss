@@ -1,60 +1,104 @@
-/* src/app/login/login.component.scss */
+// src/app/login/login.component.scss
 
 .login-container {
-    width: 300px;
-    margin: 0 auto;
-    padding-top: 50px;
-  
-    h2 {
-      text-align: center;
-    }
-  
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 50px auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  form {
     div {
       margin-bottom: 15px;
-  
+
       label {
         display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #2c3e50;
       }
-  
+
       input {
         width: 100%;
-        padding: 8px;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
         box-sizing: border-box;
+        transition: border 0.2s ease;
+
+        &:focus {
+          border-color: #3498db;
+        }
+      }
+
+      .input-error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
       }
     }
-  
+
     button {
       width: 100%;
-      padding: 10px;
-    }
-  
-    .error-message {
-      color: red;
-      text-align: center;
-      margin-top: 10px;
-    }
-  
-    .register-button {
-      text-align: center;
-      margin-top: 20px;
-  
-      p {
-        margin-bottom: 10px;
+      padding: 12px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #2980b9;
       }
-  
-      button {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        background-color: #3498db;
-        color: white;
-        border: none;
-        border-radius: 4px;
-      }
-  
-      button:hover {
-        background-color: darken(#3498db, 10%);
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
       }
     }
   }
-  
+
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .register-button {
+    text-align: center;
+    margin-top: 20px;
+
+    p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #7f8c8d;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #27ae60;
+      }
+    }
+  }
+}

@@ -1,5 +1,3 @@
-<!-- src/app/registration/registration.component.html -->
-
 <div class="registration-container">
   <h2>Register</h2>
 
@@ -22,7 +20,7 @@
         name="name"
         #nameInput="ngModel"
       />
-      <div *ngIf="nameInput.invalid && nameInput.touched">
+      <div *ngIf="nameInput.invalid && nameInput.touched" class="input-error">
         Name is required.
       </div>
     </div>
@@ -38,7 +36,7 @@
         name="username"
         #usernameInput="ngModel"
       />
-      <div *ngIf="usernameInput.invalid && usernameInput.touched">
+      <div *ngIf="usernameInput.invalid && usernameInput.touched" class="input-error">
         Username is required.
       </div>
     </div>
@@ -55,7 +53,7 @@
         #passwordInput="ngModel"
         minlength="4"
       />
-      <div *ngIf="passwordInput.invalid && passwordInput.touched">
+      <div *ngIf="passwordInput.invalid && passwordInput.touched" class="input-error">
         Password must be at least 4 characters.
       </div>
     </div>
@@ -72,7 +70,7 @@
         #confirmPasswordInput="ngModel"
         [pattern]="password"
       />
-      <div *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched">
+      <div *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched" class="input-error">
         Passwords must match.
       </div>
     </div>

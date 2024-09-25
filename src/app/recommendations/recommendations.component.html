@@ -1,30 +1,38 @@
 <div class="recommendations-container">
-    <h2>Recommended Movies</h2>
-  
-    <!-- Show error message if there's any -->
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
-  
-    <!-- Recommended Movie List -->
-    <div *ngIf="recommendedMovies.length > 0">
-      <ul>
-        <li *ngFor="let movie of recommendedMovies">
-          <h3>{{ movie.title }} ({{ movie.release_year }})</h3>
-          <p><strong>Genres:</strong> {{ movie.genres.join(', ') }}</p>
-          <p><strong>Description:</strong> {{ movie.description }}</p>
-          <p><strong>Cast:</strong> {{ movie.cast.join(', ') }}</p>
-          <p><strong>Vector Distance:</strong> {{ movie.vector_distance }}</p>
-        </li>
-      </ul>
-    </div>
-  
-    <!-- Show message if no recommendations are found -->
-    <div *ngIf="recommendedMovies.length === 0 && !errorMessage">
-      <p>No movie recommendations found.</p>
-    </div>
-  
-    <!-- Navigate back to home -->
-    <button (click)="goToHome()">Go to Home</button>
+  <h2>Recommended Movies</h2>
+
+  <!-- Show error message if there's any -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
   </div>
-  
+
+  <!-- Recommended Movie List -->
+  <div *ngIf="recommendedMovies.length > 0">
+    <ul>
+      <li *ngFor="let movie of recommendedMovies">
+        <h3>{{ movie.details.title }} ({{ movie.details.release_year }})</h3>
+        <p><strong>Genres:</strong> {{ movie.details.genres.join(', ') }}</p>
+        <p><strong>Description:</strong> {{ movie.details.description }}</p>
+        <p><strong>Cast:</strong> {{ movie.details.cast.join(', ') }}</p>
+        <p><strong>Rank:</strong> {{ movie.rank }}</p>
+        <p><strong>Type:</strong> {{ movie.type.join(', ') }}</p>
+
+        <!-- Display rating if available -->
+        <p *ngIf="movie.rating"><strong>Similar user rating:</strong> {{ movie.rating }}</p>
+        <p *ngIf="!movie.rating"><strong>Similar user rating:</strong> Not Rated</p>
+
+        <!-- Display vector distance if available -->
+        <p *ngIf="movie.vector_distance !== null"><strong>Vector Distance:</strong> {{ movie.vector_distance }}</p>
+        <p *ngIf="movie.vector_distance === null"><strong>Vector Distance:</strong> N/A</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Show message if no recommendations are found -->
+  <div *ngIf="recommendedMovies.length === 0 && !errorMessage">
+    <p>No movie recommendations found.</p>
+  </div>
+
+  <!-- Navigate back to home -->
+  <button (click)="goToHome()">Go to Home</button>
+</div>

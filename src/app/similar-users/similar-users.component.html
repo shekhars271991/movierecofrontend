@@ -1,0 +1,42 @@
+<div class="app-container">
+    <!-- Side Panel Component -->
+    <app-side-panel></app-side-panel>
+  
+    <!-- Main Content Area for Similar Users -->
+    <div class="similar-users-container">
+      <h2>Users Similar to You</h2>
+  
+      <!-- Show error message if there's any -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+  
+      <!-- Similar Users List -->
+      <div *ngIf="similarUsers.length > 0">
+        <ul>
+          <li *ngFor="let user of similarUsers">
+            <div class="user-profile">
+              <h3>{{ user.id }}</h3>
+              <p><strong>Vector Distance:</strong> {{ user.vector_distance }}</p>
+  
+              <!-- Display rated movies -->
+              <div class="rated-movies">
+                <h4>Rated Movies:</h4>
+                <ul>
+                  <li *ngFor="let movieId of getRatedMovies(user.ratings)">
+                    <p><strong>Movie:</strong> {{ movieId }} - <strong>Rating:</strong> {{ user.ratings[movieId] }}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+  
+      <!-- Show message if no similar users are found -->
+      <div *ngIf="similarUsers.length === 0 && !errorMessage">
+        <p>No similar users found.</p>
+      </div>
+    </div>
+  </div>
+  

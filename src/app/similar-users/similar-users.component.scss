@@ -1,0 +1,75 @@
+.app-container {
+    display: flex;
+  }
+  
+  .similar-users-container {
+    margin-left: 220px;  // Adjust the content to make space for the side panel
+    padding: 20px;
+    width: calc(100% - 220px);
+  }
+  
+  .similar-users-container h2 {
+    text-align: center;
+    color: #2c3e50;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  
+    li {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+  
+      .user-profile {
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+        h3 {
+          margin: 0;
+          color: #2980b9;
+        }
+  
+        p {
+          margin: 5px 0;
+          font-size: 14px;
+        }
+  
+        strong {
+          color: #34495e;
+        }
+  
+        .rated-movies {
+          margin-top: 10px;
+  
+          h4 {
+            margin-bottom: 10px;
+            color: #27ae60;
+          }
+  
+          ul {
+            list-style-type: none;
+            padding-left: 0;
+  
+            li {
+              background-color: #f4f6f9;
+              padding: 10px;
+              border-radius: 5px;
+              margin-bottom: 5px;
+              box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
+  

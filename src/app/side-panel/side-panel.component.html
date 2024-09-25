@@ -1,0 +1,14 @@
+<div class="side-panel">
+    <h3>{{ currentUser || 'User' }}</h3> <!-- Show username or a placeholder if user is not found -->
+    <ul>
+      <li><button (click)="navigateTo('home')">Home</button></li>
+      <li><button (click)="navigateTo('recommendations')">Recommendations</button></li>
+      <li><button (click)="navigateTo('similar-users')">Similar Users</button></li>
+    </ul>
+    
+    <!-- Move Logout button to the bottom -->
+    <div class="logout-button">
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
+  

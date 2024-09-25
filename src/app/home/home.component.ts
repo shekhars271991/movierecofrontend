@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { MovieService } from '../movie.service';  // Service to fetch and update movies
 import { FormsModule } from '@angular/forms';
+import { SidePanelComponent } from '../side-panel/side-panel.component';  // Import the side panel
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule],  // Include CommonModule for *ngIf and *ngFor
+  imports: [CommonModule, FormsModule, SidePanelComponent],  // Include CommonModule for *ngIf and *ngFor
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

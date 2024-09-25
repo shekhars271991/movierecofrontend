@@ -1,12 +1,15 @@
+<div class="app-container">
+  <app-side-panel></app-side-panel>
+
 <div class="home-container">
   <h2>Here is a list of movies</h2>
 
 
    <!-- Top Buttons Container -->
-   <div class="top-buttons">
+   <!-- <div class="top-buttons">
     <button class="recommendations-button" (click)="goToRecommendations()">View Recommendations</button>
     <button class="logout-button" (click)="logout()">Logout</button>
-  </div>
+  </div> -->
 
   <!-- Show error message if there's any -->
   <div *ngIf="errorMessage" class="error-message">
@@ -15,7 +18,7 @@
 
   <!-- Movie List -->
   <div *ngIf="movies.length > 0">
-    <h3>Movie List</h3>
+    <p>Please provide the rating of movies you have seen abnd mark the ones that you have not seen</p>
     <ul>
       <li *ngFor="let movie of movies">
         <strong>{{ movie.title }}</strong> ({{ movie.release_year }})
@@ -52,4 +55,5 @@
   </div>
 
 
+</div>
 </div>

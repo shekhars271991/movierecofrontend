@@ -13,22 +13,36 @@
 
     <!-- Recommended Movie List -->
     <div *ngIf="recommendedMovies.length > 0">
-      <ul>
-        <li *ngFor="let movie of recommendedMovies">
-          <h3>{{ movie.details.title }} ({{ movie.details.release_year }})</h3>
-          <p><strong>Genres:</strong> {{ movie.details.genres.join(', ') }}</p>
-          <p><strong>Description:</strong> {{ movie.details.description }}</p>
-          <p><strong>Cast:</strong> {{ movie.details.cast.join(', ') }}</p>
-          <p><strong>Rank:</strong> {{ movie.rank }}</p>
-          <p><strong>Type:</strong> {{ movie.type.join(', ') }}</p>
+      <ul class="movie-list">
+        <li *ngFor="let movie of recommendedMovies" class="movie-card">
+          <!-- Movie Details (Poster and Info) -->
+          <div class="movie-details">
+            <!-- Movie Poster -->
+            <img [src]="movie.details.poster" alt="{{ movie.details.title }} Poster" class="movie-poster" />
 
-          <!-- Display rating if available -->
-          <p *ngIf="movie.rating"><strong>Rating:</strong> {{ movie.rating }}</p>
-          <p *ngIf="!movie.rating"><strong>Rating:</strong> Not Rated</p>
+            <!-- Movie Information -->
+            <div class="movie-info">
+              <h3>{{ movie.details.title }} ({{ movie.details.release_year }})</h3>
+              <p><strong>Genres:</strong> {{ movie.details.genres.join(', ') }}</p>
+              <p><strong>Description:</strong> {{ movie.details.description }}</p>
+              <p><strong>Cast:</strong> {{ movie.details.actors.join(', ') }}</p>
+              <p><strong>Director:</strong> {{ movie.details.director }}</p>
+              <p><strong>Writers:</strong> {{ movie.details.writer.join(', ') }}</p>
+              <p><strong>Awards:</strong> {{ movie.details.awards }}</p>
+              <p><strong>Box Office:</strong> {{ movie.details.boxoffice }}</p>
+              <p><strong>IMDb Rating:</strong> {{ movie.details.imdbrating }}</p>
+              <p><strong>Rank:</strong> {{ movie.rank }}</p>
+              <p><strong>Type:</strong> {{ movie.type.join(', ') }}</p>
 
-          <!-- Display vector distance if available -->
-          <p *ngIf="movie.vector_distance !== null"><strong>Vector Distance:</strong> {{ movie.vector_distance }}</p>
-          <p *ngIf="movie.vector_distance === null"><strong>Vector Distance:</strong> N/A</p>
+              <!-- Display rating if available -->
+              <p *ngIf="movie.rating"><strong>Rating:</strong> {{ movie.rating }}</p>
+              <p *ngIf="!movie.rating"><strong>Rating:</strong> Not Rated</p>
+
+              <!-- Display vector distance if available -->
+              <p *ngIf="movie.vector_distance !== null"><strong>Vector Distance:</strong> {{ movie.vector_distance }}</p>
+              <p *ngIf="movie.vector_distance === null"><strong>Vector Distance:</strong> N/A</p>
+            </div>
+          </div>
         </li>
       </ul>
     </div>

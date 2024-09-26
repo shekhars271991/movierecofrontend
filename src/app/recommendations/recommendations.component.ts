@@ -1,11 +1,8 @@
-// src/app/recommendations/recommendations.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MovieService } from '../movie.service';  // Service to fetch movie recommendations
 import { SidePanelComponent } from '../side-panel/side-panel.component';  // Import the side panel
-
 
 @Component({
   selector: 'app-recommendations',

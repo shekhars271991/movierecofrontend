@@ -1,59 +1,67 @@
 <div class="app-container">
   <app-side-panel></app-side-panel>
 
-<div class="home-container">
-  <h2>Here is a list of movies</h2>
+  <div class="home-container">
+    <h2>Here is a list of movies</h2>
 
+    <!-- Show error message if there's any -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
 
-   <!-- Top Buttons Container -->
-   <!-- <div class="top-buttons">
-    <button class="recommendations-button" (click)="goToRecommendations()">View Recommendations</button>
-    <button class="logout-button" (click)="logout()">Logout</button>
-  </div> -->
+    <!-- Movie List -->
+    <div *ngIf="movies.length > 0">
+      <p>Please provide the rating of movies you have seen and mark the ones that you have not seen</p>
+      <ul>
+        <li *ngFor="let movie of movies">
+          <div class="movie-card">
+            <!-- Movie Details (Poster and Info) -->
+            <div class="movie-details">
+              <img class="poster" [src]="movie.poster" alt="{{ movie.title }}" />
 
-  <!-- Show error message if there's any -->
-  <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
-  </div>
+              <div class="movie-info">
+                <strong>{{ movie.title }} ({{ movie.release_year }})</strong>
+                <p><strong>Genres:</strong> {{ movie.genres.join(', ') }}</p>
+                <p><strong>Actors:</strong> {{ movie.actors.join(', ') }}</p>
+                <p><strong>Country:</strong> {{ movie.country }}</p>
+                <p><strong>Box Office:</strong> {{ movie.boxoffice }}</p>
+                <p><strong>Awards:</strong> {{ movie.awards }}</p>
+                <p><strong>Description:</strong> {{ movie.description }}</p>
+                <p><strong>IMDB Rating:</strong> {{ movie.imdbrating }}</p>
+                <p><strong>Metascore:</strong> {{ movie.metascore }}</p>
+              </div>
+            </div>
 
-  <!-- Movie List -->
-  <div *ngIf="movies.length > 0">
-    <p>Please provide the rating of movies you have seen abnd mark the ones that you have not seen</p>
-    <ul>
-      <li *ngFor="let movie of movies">
-        <strong>{{ movie.title }}</strong> ({{ movie.release_year }})
-        <p>{{ movie.description }}</p>
+            <!-- Action Buttons and Rating Section -->
+            <div class="action-section">
+              <div class="action-buttons">
+                <button (click)="setWatched(movie, true)">Seen</button>
+                <button class="not-seen" (click)="setWatched(movie, false)">Not Seen</button>
+              </div>
 
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-          <button (click)="setWatched(movie, true)">Seen</button>
-          <button class="not-seen" (click)="setWatched(movie, false)">Not Seen</button>
-        </div>
+              <div *ngIf="movie.watched" class="rating-section">
+                <label for="rating-{{ movie.id }}">Rate:</label>
+                <select [(ngModel)]="movie.rating" id="rating-{{ movie.id }}">
+                  <option *ngFor="let r of [1, 2, 3, 4, 5]" [value]="r">{{ r }}</option>
+                </select>
+                <button class="submit-rating" (click)="submitRating(movie)">Submit Rating</button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
 
-        <!-- Rating Selection (only shown if the movie is marked as seen) -->
-        <div *ngIf="movie.watched" class="rating-section">
-          <label for="rating-{{ movie.id }}">Rate:</label>
-          <select [(ngModel)]="movie.rating" id="rating-{{ movie.id }}">
-            <option *ngFor="let r of [1, 2, 3, 4, 5]" [value]="r">{{ r }}</option>
-          </select>
-          <button class="submit-rating" (click)="submitRating(movie)">Submit Rating</button>
-        </div>
-      </li>
-    </ul>
+      <!-- Pagination Controls -->
+      <div class="pagination-controls">
+        <button (click)="previousPage()" [disabled]="page === 1">Previous</button>
+        <span>Page {{ page }} of {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+      </div>
+    </div>
 
-    <!-- Pagination Controls -->
-    <div class="pagination-controls">
-      <button (click)="previousPage()" [disabled]="page === 1">Previous</button>
-      <span>Page {{ page }} of {{ totalPages }}</span>
-      <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+    <!-- Show message if no movies are found -->
+    <div *ngIf="movies.length === 0 && !errorMessage">
+      <p>No movies found.</p>
     </div>
   </div>
-
-  <!-- Show message if no movies are found -->
-  <div *ngIf="movies.length === 0 && !errorMessage">
-    <p>No movies found.</p>
-  </div>
-
-
-</div>
 </div>

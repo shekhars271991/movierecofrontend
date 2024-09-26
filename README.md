@@ -83,36 +83,6 @@ Follow these steps to set up and run the project on your local machine:
 
     The app will be accessible at `http://localhost:4200`.
 
-Project Structure
------------------
-
-arduino
-
-Copy code
-
-`src/
-├── app/
-│   ├── auth/
-│   │   ├── login.component.ts
-│   │   ├── register.component.ts
-│   ├── home/
-│   │   ├── home.component.ts
-│   │   ├── home.component.html
-│   ├── recommendations/
-│   │   ├── recommendations.component.ts
-│   │   ├── recommendations.component.html
-│   ├── similar-users/
-│   │   ├── similar-users.component.ts
-│   │   ├── similar-users.component.html
-│   ├── side-panel/
-│   │   ├── side-panel.component.ts
-│   │   ├── side-panel.component.html
-│   └── movie.service.ts
-├── assets/
-├── environments/
-│   └── environment.ts
-└── index.html`
-
 Environment Variables
 ---------------------
 

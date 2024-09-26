@@ -40,58 +40,29 @@ Follow these steps to set up and run the project on your local machine:
 ### Steps
 
 1.  **Clone the Repository**
-
-    bash
-
-    Copy code
-
     `git clone <repository-url>
     cd movie-recommendation-frontend`
 
 2.  **Install Dependencies**
-
     Install the required packages by running:
-
-    bash
-
-    Copy code
-
     `npm install`
 
 3.  **Set Up Environment Variables**
-
     Create an `environment.ts` file in the `src/environments` directory. You need to configure the backend API endpoint:
-
-    typescript
-
-    Copy code
-
     `export const environment = {
       production: false,
       apiBaseUrl: 'http://localhost:5000'
     };`
 
 4.  **Run the Angular Application**
-
     To run the app in development mode:
-
-    bash
-
-    Copy code
-
     `ng serve`
-
     The app will be accessible at `http://localhost:4200`.
 
 Environment Variables
 ---------------------
 
 Ensure that your `environment.ts` file includes the correct API base URL of your backend:
-
-typescript
-
-Copy code
-
 `export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:5000' // Adjust based on your backend URL
@@ -103,23 +74,12 @@ Running the Application
 -----------------------
 
 1.  To start the development server:
-
-    bash
-
-    Copy code
-
     `ng serve`
-
     Visit `http://localhost:4200` in your browser to see the app.
 
 2.  **Build for Production**:
 
     To build the application for production, use:
-
-    bash
-
-    Copy code
-
     `ng build --prod`
 
     The build output will be stored in the `dist/` directory.
@@ -190,17 +150,9 @@ Useful Commands
 
 ### Serve the Application
 
-bash
-
-Copy code
-
 `ng serve`
 
 ### Build the Application for Production
-
-bash
-
-Copy code
 
 `ng build --prod`
 
